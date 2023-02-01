@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -57,23 +58,13 @@ fun BalanceHeader(
     ) {
         Text(
             text = "Balance",
-            fontSize = 24.sp
+            style = MaterialTheme.typography.bodyLarge
         )
 
-        Row(
-            modifier = modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.End
-        ) {
-
-            Text(
-                text = "$ ",
-                fontSize = 24.sp
-            )
-
-            Text(
-                text = balanceAmount.toString(),
-                fontSize = 24.sp
-            )
-        }
+        AmountView(
+            modifier,
+            balanceAmount,
+            textStyle = MaterialTheme.typography.bodyLarge
+        )
     }
 }
