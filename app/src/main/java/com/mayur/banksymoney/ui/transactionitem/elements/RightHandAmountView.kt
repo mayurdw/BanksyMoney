@@ -14,8 +14,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mayur.banksymoney.ui.theme.MyApplicationTheme
 
-// TODO Rename this file
-
 /**
  * Displays a [Row] of content with the Amount formatted on the right side. See [AmountView]
  * @param balanceAmount -> Unformatted number, can be negative
