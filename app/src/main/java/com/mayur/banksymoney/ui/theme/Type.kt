@@ -32,8 +32,8 @@ val montserratFontFamily = FontFamily(
 val Typography = Typography(
     bodyLarge = TextStyle(
         fontFamily = montserratFontFamily,
-        fontWeight = FontWeight.Normal,
-        fontSize = 24.sp,
+        fontWeight = FontWeight.Bold,
+        fontSize = 32.sp,
         letterSpacing = 0.5.sp
     ),
 

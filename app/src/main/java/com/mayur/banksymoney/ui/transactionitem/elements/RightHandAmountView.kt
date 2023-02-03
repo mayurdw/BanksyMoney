@@ -1,13 +1,11 @@
 package com.mayur.banksymoney.ui.transactionitem.elements
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
@@ -25,15 +23,18 @@ fun RightHandAmountView(
     modifier: Modifier = Modifier,
     balanceAmount: Double,
     textStyle: TextStyle = MaterialTheme.typography.bodyMedium,
-    leftHandContent: @Composable () -> Unit
+    leftHandContent: @Composable (
+        modifier: Modifier
+    ) -> Unit
 ) {
     Row(
         modifier = modifier
             .fillMaxWidth()
             .padding(horizontal = 8.dp),
-        horizontalArrangement = Arrangement.SpaceBetween
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.Bottom
     ) {
-        leftHandContent()
+        leftHandContent(modifier = modifier)
 
         AmountView(
             modifier = modifier,
@@ -55,11 +56,13 @@ private fun AmountView(
     ) {
 
         Text(
+            modifier = modifier.alignByBaseline(),
             text = if (balanceAmount < 0.0) "-$ " else "$ ",
             style = textStyle
         )
 
         Text(
+            modifier = modifier.align(Alignment.Bottom),
             text = if (balanceAmount < 0.0) (balanceAmount.times(-1.0)).toString() else balanceAmount.toString(),
             style = textStyle
         )

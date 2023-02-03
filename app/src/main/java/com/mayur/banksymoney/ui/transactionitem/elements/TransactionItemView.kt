@@ -47,7 +47,7 @@ fun TransactionItemView(
         balanceAmount = transaction.amount,
         leftHandContent = {
             Row(
-                modifier = modifier,
+                modifier = it,
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -60,7 +60,7 @@ fun TransactionItemView(
                 )
 
                 Text(
-                    modifier = modifier.padding(start = 8.dp),
+                    modifier = it.padding(start = 8.dp),
                     text = transaction.category.displayName,
                     style = MaterialTheme.typography.bodyMedium
                 )
