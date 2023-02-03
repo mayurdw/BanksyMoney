@@ -123,4 +123,7 @@ dependencies {
     androidTestImplementation(libs.androidx.test.core)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.androidx.test.runner)
+
+    // graph library
+    implementation("com.github.jaikeerthick:Composable-Graphs:v1.0")
 }
