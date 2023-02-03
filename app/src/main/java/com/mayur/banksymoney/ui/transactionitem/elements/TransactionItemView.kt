@@ -30,7 +30,7 @@ private fun PreviewCategoryItem() {
 
     MyApplicationTheme {
         Surface {
-            TransactionsCategoryList(transaction = transaction)
+            TransactionItemView(transaction = transaction)
         }
 
     }
@@ -38,7 +38,7 @@ private fun PreviewCategoryItem() {
 
 
 @Composable
-fun TransactionsCategoryList(
+fun TransactionItemView(
     modifier: Modifier = Modifier,
     transaction: TransactionItem
 ) {
