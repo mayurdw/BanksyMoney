@@ -26,6 +26,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import com.mayur.banksymoney.data.TransactionItemRepository
+import com.mayur.banksymoney.data.local.database.TransactionItem
 import com.mayur.banksymoney.ui.transactionitem.TransactionItemUiState.Error
 import com.mayur.banksymoney.ui.transactionitem.TransactionItemUiState.Loading
 import com.mayur.banksymoney.ui.transactionitem.TransactionItemUiState.Success
@@ -41,9 +42,9 @@ class TransactionItemViewModel @Inject constructor(
         .catch { Error(it) }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), Loading)
 
-    fun addTransactionItem(name: String) {
+    fun addTransactionItem(amount: Double) {
         viewModelScope.launch {
-            transactionItemRepository.add(name)
+            transactionItemRepository.add(amount = amount)
         }
     }
 }
@@ -51,5 +52,5 @@ class TransactionItemViewModel @Inject constructor(
 sealed interface TransactionItemUiState {
     object Loading : TransactionItemUiState
     data class Error(val throwable: Throwable) : TransactionItemUiState
-    data class Success(val data: List<String>) : TransactionItemUiState
+    data class Success(val data: List<TransactionItem>) : TransactionItemUiState
 }

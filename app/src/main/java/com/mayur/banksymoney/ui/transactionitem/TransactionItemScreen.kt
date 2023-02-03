@@ -42,7 +42,10 @@ import com.mayur.banksymoney.ui.theme.MyApplicationTheme
 import androidx.compose.material3.ExperimentalMaterial3Api
 
 @Composable
-fun TransactionItemScreen(modifier: Modifier = Modifier, viewModel: TransactionItemViewModel = hiltViewModel()) {
+fun TransactionItemScreen(
+    modifier: Modifier = Modifier,
+    viewModel: TransactionItemViewModel = hiltViewModel()
+) {
     val lifecycle = LocalLifecycleOwner.current.lifecycle
     val items by produceState<TransactionItemUiState>(
         initialValue = TransactionItemUiState.Loading,
@@ -54,11 +57,6 @@ fun TransactionItemScreen(modifier: Modifier = Modifier, viewModel: TransactionI
         }
     }
     if (items is TransactionItemUiState.Success) {
-        TransactionItemScreen(
-            items = (items as TransactionItemUiState.Success).data,
-            onSave = viewModel::addTransactionItem,
-            modifier = modifier
-        )
     }
 }
 
@@ -72,7 +70,9 @@ internal fun TransactionItemScreen(
     Column(modifier) {
         var nameTransactionItem by remember { mutableStateOf("Compose") }
         Row(
-            modifier = Modifier.fillMaxWidth().padding(bottom = 24.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(bottom = 24.dp),
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             TextField(

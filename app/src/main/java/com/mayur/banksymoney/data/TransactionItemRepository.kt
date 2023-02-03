@@ -16,26 +16,25 @@
 
 package com.mayur.banksymoney.data
 
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
 import com.mayur.banksymoney.data.local.database.TransactionItem
 import com.mayur.banksymoney.data.local.database.TransactionItemDao
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 interface TransactionItemRepository {
-    val transactionItems: Flow<List<String>>
+    val transactionItems: Flow<List<TransactionItem>>
 
-    suspend fun add(name: String)
+    suspend fun add(amount: Double)
 }
 
 class DefaultTransactionItemRepository @Inject constructor(
     private val transactionItemDao: TransactionItemDao
 ) : TransactionItemRepository {
 
-    override val transactionItems: Flow<List<String>> =
-        transactionItemDao.getTransactionItems().map { items -> items.map { it.name } }
+    override val transactionItems: Flow<List<TransactionItem>> =
+        transactionItemDao.getTransactionItems()
 
-    override suspend fun add(name: String) {
-        transactionItemDao.insertTransactionItem(TransactionItem(name = name))
+    override suspend fun add(amount: Double) {
+        transactionItemDao.insertTransactionItem(TransactionItem(amount = amount))
     }
 }

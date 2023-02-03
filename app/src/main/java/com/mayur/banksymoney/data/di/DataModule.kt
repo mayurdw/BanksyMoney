@@ -24,6 +24,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import com.mayur.banksymoney.data.TransactionItemRepository
 import com.mayur.banksymoney.data.DefaultTransactionItemRepository
+import com.mayur.banksymoney.data.local.database.TransactionItem
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -39,11 +40,11 @@ interface DataModule {
 }
 
 class FakeTransactionItemRepository @Inject constructor() : TransactionItemRepository {
-    override val transactionItems: Flow<List<String>> = flowOf(fakeTransactionItems)
+    override val transactionItems: Flow<List<TransactionItem>> = flowOf(fakeTransactionItems)
 
-    override suspend fun add(name: String) {
+    override suspend fun add(amount: Double) {
         throw NotImplementedError()
     }
 }
 
-val fakeTransactionItems = listOf("One", "Two", "Three")
+val fakeTransactionItems = listOf(TransactionItem(amount = 1.00), TransactionItem(amount = 2.93))

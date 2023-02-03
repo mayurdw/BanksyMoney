@@ -13,7 +13,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.mayur.banksymoney.R
+import com.mayur.banksymoney.data.local.database.TransactionCategory
+import com.mayur.banksymoney.data.local.database.TransactionItem
 import com.mayur.banksymoney.ui.theme.MyApplicationTheme
 
 @Preview(
@@ -22,9 +23,8 @@ import com.mayur.banksymoney.ui.theme.MyApplicationTheme
 @Composable
 private fun PreviewCategoryItem() {
     val transaction =
-        Transaction(
-            icon = "Eating Out",
-            category = "Eating Out",
+        TransactionItem(
+            category = TransactionCategory.GROCERIES,
             amount = 32.23
         )
 
@@ -40,7 +40,7 @@ private fun PreviewCategoryItem() {
 @Composable
 fun TransactionsCategoryList(
     modifier: Modifier = Modifier,
-    transaction: Transaction
+    transaction: TransactionItem
 ) {
     RightHandAmountView(
         modifier = modifier,
@@ -53,7 +53,7 @@ fun TransactionsCategoryList(
             ) {
                 Icon(
                     painter = painterResource(
-                        id = R.drawable.outline_eating_out_24,
+                        id = transaction.category.drawableRes,
                     ),
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.onBackground
@@ -61,17 +61,10 @@ fun TransactionsCategoryList(
 
                 Text(
                     modifier = modifier.padding(start = 8.dp),
-                    text = transaction.category,
+                    text = transaction.category.displayName,
                     style = MaterialTheme.typography.bodyMedium
                 )
             }
         }
     )
 }
-
-// TODO: Make this the main Transaction item as per requirements later
-data class Transaction(
-    val icon: String,
-    val category: String,
-    val amount: Double
-)

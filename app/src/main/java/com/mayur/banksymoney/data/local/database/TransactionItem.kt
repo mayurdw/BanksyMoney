@@ -25,7 +25,8 @@ import kotlinx.coroutines.flow.Flow
 
 @Entity
 data class TransactionItem(
-    val name: String
+    val category: TransactionCategory = TransactionCategory.UNKNOWN,
+    val amount: Double,
 ) {
     @PrimaryKey(autoGenerate = true)
     var uid: Int = 0
