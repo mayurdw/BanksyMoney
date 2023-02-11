@@ -21,6 +21,8 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.mayur.banksymoney.data.local.database.TransactionCategory
+import com.mayur.banksymoney.data.local.database.TransactionItem
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -38,14 +40,22 @@ class TransactionItemScreenTest {
     @Before
     fun setup() {
         composeTestRule.setContent {
-            TransactionItemScreen(FAKE_DATA, onSave = {})
+            TransactionItemScreen(
+                FAKE_DATA
+            )
         }
     }
 
     @Test
     fun firstItem_exists() {
-        composeTestRule.onNodeWithText(FAKE_DATA.first()).assertExists().performClick()
+        composeTestRule.onNodeWithText(
+            FAKE_DATA.first().amount.toString()
+        ).assertExists().performClick()
     }
 }
 
-private val FAKE_DATA = listOf("Compose", "Room", "Kotlin")
+private val FAKE_DATA = listOf(
+    TransactionItem(category = TransactionCategory.GROCERIES, amount = 32.0),
+    TransactionItem(category = TransactionCategory.RENT, amount = 330.0),
+    TransactionItem(category = TransactionCategory.GROCERIES, amount = 12.2)
+)

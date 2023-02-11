@@ -16,30 +16,21 @@
 
 package com.mayur.banksymoney.ui.transactionitem
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.produceState
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle.State.STARTED
 import androidx.lifecycle.repeatOnLifecycle
-import com.mayur.banksymoney.ui.theme.MyApplicationTheme
-import androidx.compose.material3.ExperimentalMaterial3Api
+import com.mayur.banksymoney.data.local.database.TransactionCategory
+import com.mayur.banksymoney.data.local.database.TransactionItem
+import com.mayur.banksymoney.ui.transactionitem.elements.GraphicalHistoryView
+import com.mayur.banksymoney.ui.transactionitem.elements.TransactionSummaryCard
 
 @Composable
 fun TransactionItemScreen(
@@ -56,54 +47,44 @@ fun TransactionItemScreen(
             viewModel.uiState.collect { value = it }
         }
     }
+
     if (items is TransactionItemUiState.Success) {
+        TransactionItemScreen(
+            modifier = modifier,
+            items = (items as TransactionItemUiState.Success).data
+        )
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun TransactionItemScreen(
-    items: List<String>,
-    onSave: (name: String) -> Unit,
+    items: List<TransactionItem>,
     modifier: Modifier = Modifier
 ) {
     Column(modifier) {
-        var nameTransactionItem by remember { mutableStateOf("Compose") }
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 24.dp),
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
-            TextField(
-                value = nameTransactionItem,
-                onValueChange = { nameTransactionItem = it }
-            )
+        GraphicalHistoryView(
+            xAxisLabelStrings = listOf("Jan", "Feb", "Mar"),
+            yAxisValueIntegers = listOf(20.0, 13.2, 18.8)
+        )
 
-            Button(modifier = Modifier.width(96.dp), onClick = { onSave(nameTransactionItem) }) {
-                Text("Save")
-            }
-        }
-        items.forEach {
-            Text("Saved item: $it")
-        }
+        TransactionSummaryCard(
+            transactionCategoryList = items, balanceAmount = 300.2
+        )
     }
 }
 
 // Previews
-
-@Preview(showBackground = true)
+@Preview(
+    device = Devices.DEFAULT,
+    showSystemUi = true
+)
 @Composable
-private fun DefaultPreview() {
-    MyApplicationTheme {
-        TransactionItemScreen(listOf("Compose", "Room", "Kotlin"), onSave = {})
-    }
-}
+private fun PreviewTransactionItemScreen() {
+    val fakeData = listOf(
+        TransactionItem(category = TransactionCategory.GROCERIES, amount = 32.0),
+        TransactionItem(category = TransactionCategory.RENT, amount = 330.0),
+        TransactionItem(category = TransactionCategory.GROCERIES, amount = 12.2)
+    )
 
-@Preview(showBackground = true, widthDp = 480)
-@Composable
-private fun PortraitPreview() {
-    MyApplicationTheme {
-        TransactionItemScreen(listOf("Compose", "Room", "Kotlin"), onSave = {})
-    }
+    TransactionItemScreen(items = fakeData)
 }
