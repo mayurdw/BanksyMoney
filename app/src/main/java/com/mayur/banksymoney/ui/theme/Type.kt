@@ -32,8 +32,8 @@ val montserratFontFamily = FontFamily(
 val Typography = Typography(
     bodyLarge = TextStyle(
         fontFamily = montserratFontFamily,
-        fontWeight = FontWeight.Bold,
-        fontSize = 32.sp,
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 24.sp,
         letterSpacing = 0.5.sp
     ),
 
@@ -45,8 +45,8 @@ val Typography = Typography(
     ),
     titleLarge = TextStyle(
         fontFamily = montserratFontFamily,
-        fontWeight = FontWeight.Bold,
-        fontSize = 40.sp,
+        fontWeight = FontWeight.SemiBold,
+        fontSize = 32.sp,
         letterSpacing = 0.5.sp
     )
     /* Other default text styles to override

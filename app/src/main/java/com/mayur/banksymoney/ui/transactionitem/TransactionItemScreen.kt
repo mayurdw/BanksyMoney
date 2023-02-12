@@ -16,22 +16,26 @@
 
 package com.mayur.banksymoney.ui.transactionitem
 
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.produceState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle.State.STARTED
 import androidx.lifecycle.repeatOnLifecycle
+import com.mayur.banksymoney.R
 import com.mayur.banksymoney.data.local.database.TransactionCategory
 import com.mayur.banksymoney.data.local.database.TransactionItem
+import com.mayur.banksymoney.ui.theme.MyApplicationTheme
 import com.mayur.banksymoney.ui.transactionitem.elements.AppTopBar
 import com.mayur.banksymoney.ui.transactionitem.elements.TransactionSummaryCard
 
@@ -67,16 +71,43 @@ internal fun TransactionItemScreen(
 ) {
     Scaffold(
         modifier = modifier.fillMaxSize(),
-        topBar = { AppTopBar() },
-        content = {
+        topBar = { AppTopBar() }
+    ) {
+        Column(modifier.padding(it)) {
+            Row(modifier = modifier.fillMaxWidth()) {
+                Text(
+                    text = "View By:"
+                )
+
+                Row(
+                    modifier = modifier
+                ) {
+                    RadioButton(selected = false, onClick = {})
+
+                    Text(
+                        text = stringResource(id = R.string.yearly)
+                    )
+                }
+
+                Row(
+                    modifier = modifier
+                ) {
+                    RadioButton(selected = true, onClick = {})
+
+                    Text(
+                        text = stringResource(id = R.string.monthly)
+                    )
+                }
+            }
             TransactionSummaryCard(
-                modifier = modifier.padding(it),
+                modifier = modifier
+                    .padding(bottom = it.calculateBottomPadding()),
                 balanceAmount = 30.0,
                 expensesAmount = 30.0,
                 incomeAmount = 60.0
             )
         }
-    )
+    }
 }
 
 // Previews
@@ -92,5 +123,7 @@ private fun PreviewTransactionItemScreen() {
         TransactionItem(category = TransactionCategory.GROCERIES, amount = 12.2)
     )
 
-    TransactionItemScreen(items = fakeData)
+    MyApplicationTheme {
+        TransactionItemScreen(items = fakeData)
+    }
 }

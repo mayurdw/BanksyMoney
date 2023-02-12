@@ -20,7 +20,8 @@ fun TransactionSummaryCard(
     Card(
         modifier = modifier
             .fillMaxWidth()
-            .padding(8.dp), colors = CardDefaults.cardColors(
+            .padding(8.dp),
+        colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surfaceVariant
         )
 
@@ -28,7 +29,7 @@ fun TransactionSummaryCard(
         Column(
             modifier = modifier
                 .padding(8.dp),
-            verticalArrangement = Arrangement.Center
+            verticalArrangement = Arrangement.Top
         ) {
 
             AmountHeader(

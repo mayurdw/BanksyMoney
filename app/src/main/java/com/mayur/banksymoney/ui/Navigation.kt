@@ -30,7 +30,9 @@ fun MainNavigation() {
     val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination = "main") {
-        composable("main") { TransactionItemScreen(modifier = Modifier.padding(16.dp)) }
+        composable("main") {
+            TransactionItemScreen()
+        }
         // TODO: Add more destinations
     }
 }
