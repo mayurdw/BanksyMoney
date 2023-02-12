@@ -37,4 +37,8 @@
     <string name="travel">Travel</string>
     <string name="water">Water</string>
     <string name="unknown">Unknown</string>
+    <string name="summary_period_dropdown_button">Summary Period Dropdown Button</string>
+    <string name="weekly">Weekly</string>
+    <string name="monthly">Monthly</string>
+    <string name="yearly">Yearly</string>
 </resources>
