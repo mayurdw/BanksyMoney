@@ -32,7 +32,7 @@ fun RightHandAmountView(
             .fillMaxWidth()
             .padding(horizontal = 8.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.Bottom
+        verticalAlignment = Alignment.CenterVertically
     ) {
         leftHandContent(modifier = modifier)
 

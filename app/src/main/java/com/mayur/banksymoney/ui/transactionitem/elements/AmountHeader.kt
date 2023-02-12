@@ -1,28 +1,33 @@
 package com.mayur.banksymoney.ui.transactionitem.elements
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
+import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.mayur.banksymoney.R
 import com.mayur.banksymoney.ui.theme.MyApplicationTheme
 
 @Composable
-fun BalanceHeader(
+fun AmountHeader(
     modifier: Modifier = Modifier,
-    balanceAmount: Double
+    amount: Double,
+    @StringRes headerString: Int
 ) {
     RightHandAmountView(
         modifier = modifier,
-        balanceAmount = balanceAmount,
+        balanceAmount = amount,
+        textStyle = MaterialTheme.typography.bodyLarge,
         leftHandContent = {
             Text(
                 modifier = it.padding(top = 8.dp),
-                text = "Balance",
+                text = stringResource(headerString),
                 style = MaterialTheme.typography.bodyLarge
             )
         }
@@ -36,8 +41,9 @@ fun BalanceHeader(
 private fun PreviewBalanceHeader() {
     MyApplicationTheme {
         Surface {
-            BalanceHeader(
-                balanceAmount = 400.00
+            AmountHeader(
+                amount = 400.00,
+                headerString = R.string.balance
             )
         }
     }
@@ -51,8 +57,9 @@ private fun PreviewBalanceHeader() {
 private fun PreviewDarkBalanceHeader() {
     MyApplicationTheme {
         Surface {
-            BalanceHeader(
-                balanceAmount = 5000.00
+            AmountHeader(
+                amount = 5000.00,
+                headerString = R.string.income
             )
         }
     }

@@ -16,4 +16,7 @@
 
 <resources>
     <string name="app_name">BanksyMoney</string>
+    <string name="balance">Balance</string>
+    <string name="expenses">Expenses</string>
+    <string name="income">Income</string>
 </resources>

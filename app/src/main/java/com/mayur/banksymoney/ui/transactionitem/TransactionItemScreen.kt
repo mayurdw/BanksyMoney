@@ -16,7 +16,6 @@
 
 package com.mayur.banksymoney.ui.transactionitem
 
-import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.produceState
@@ -29,8 +28,6 @@ import androidx.lifecycle.Lifecycle.State.STARTED
 import androidx.lifecycle.repeatOnLifecycle
 import com.mayur.banksymoney.data.local.database.TransactionCategory
 import com.mayur.banksymoney.data.local.database.TransactionItem
-import com.mayur.banksymoney.ui.transactionitem.elements.GraphicalHistoryView
-import com.mayur.banksymoney.ui.transactionitem.elements.TransactionSummaryCard
 
 @Composable
 fun TransactionItemScreen(
@@ -61,16 +58,7 @@ internal fun TransactionItemScreen(
     items: List<TransactionItem>,
     modifier: Modifier = Modifier
 ) {
-    Column(modifier) {
-        GraphicalHistoryView(
-            xAxisLabelStrings = listOf("Jan", "Feb", "Mar"),
-            yAxisValueIntegers = listOf(20.0, 13.2, 18.8)
-        )
 
-        TransactionSummaryCard(
-            transactionCategoryList = items, balanceAmount = 300.2
-        )
-    }
 }
 
 // Previews
