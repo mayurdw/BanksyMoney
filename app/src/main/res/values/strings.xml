@@ -19,4 +19,22 @@
     <string name="balance">Balance</string>
     <string name="expenses">Expenses</string>
     <string name="income">Income</string>
+    <string name="clothes">Clothes</string>
+    <string name="takeout">Takeout/Eating Out</string>
+    <string name="electronics">Electronics</string>
+    <string name="gifts">Gifts</string>
+    <string name="groceries">Groceries</string>
+    <string name="home_stuff">Home Stuff</string>
+    <string name="internet">Internet</string>
+    <string name="investment">Investment</string>
+    <string name="ignore">Ignore</string>
+    <string name="loan">Loan/Parents</string>
+    <string name="misc">Misc</string>
+    <string name="medical_insurance">Medical/Insurance</string>
+    <string name="power">Power</string>
+    <string name="rent">Rent</string>
+    <string name="phone">Phone</string>
+    <string name="travel">Travel</string>
+    <string name="water">Water</string>
+    <string name="unknown">Unknown</string>
 </resources>
