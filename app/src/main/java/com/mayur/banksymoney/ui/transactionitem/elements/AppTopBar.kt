@@ -1,4 +1,4 @@
-package com.mayur.banksymoney.ui
+package com.mayur.banksymoney.ui.transactionitem.elements
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row

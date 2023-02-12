@@ -16,6 +16,10 @@
 
 package com.mayur.banksymoney.ui.transactionitem
 
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.produceState
@@ -28,6 +32,8 @@ import androidx.lifecycle.Lifecycle.State.STARTED
 import androidx.lifecycle.repeatOnLifecycle
 import com.mayur.banksymoney.data.local.database.TransactionCategory
 import com.mayur.banksymoney.data.local.database.TransactionItem
+import com.mayur.banksymoney.ui.transactionitem.elements.AppTopBar
+import com.mayur.banksymoney.ui.transactionitem.elements.TransactionSummaryCard
 
 @Composable
 fun TransactionItemScreen(
@@ -53,12 +59,24 @@ fun TransactionItemScreen(
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun TransactionItemScreen(
     items: List<TransactionItem>,
     modifier: Modifier = Modifier
 ) {
-
+    Scaffold(
+        modifier = modifier.fillMaxSize(),
+        topBar = { AppTopBar() },
+        content = {
+            TransactionSummaryCard(
+                modifier = modifier.padding(it),
+                balanceAmount = 30.0,
+                expensesAmount = 30.0,
+                incomeAmount = 60.0
+            )
+        }
+    )
 }
 
 // Previews
