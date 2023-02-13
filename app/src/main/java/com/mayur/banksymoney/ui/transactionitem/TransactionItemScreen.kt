@@ -17,26 +17,23 @@
 package com.mayur.banksymoney.ui.transactionitem
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.RadioButton
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.produceState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLifecycleOwner
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle.State.STARTED
 import androidx.lifecycle.repeatOnLifecycle
-import com.mayur.banksymoney.R
 import com.mayur.banksymoney.data.local.database.TransactionCategory
 import com.mayur.banksymoney.data.local.database.TransactionItem
 import com.mayur.banksymoney.ui.theme.MyApplicationTheme
 import com.mayur.banksymoney.ui.transactionitem.elements.AppTopBar
+import com.mayur.banksymoney.ui.transactionitem.elements.TransactionCategoryList
 import com.mayur.banksymoney.ui.transactionitem.elements.TransactionSummaryCard
 
 @Composable
@@ -73,32 +70,10 @@ internal fun TransactionItemScreen(
         modifier = modifier.fillMaxSize(),
         topBar = { AppTopBar() }
     ) {
-        Column(modifier.padding(it)) {
-            Row(modifier = modifier.fillMaxWidth()) {
-                Text(
-                    text = "View By:"
-                )
-
-                Row(
-                    modifier = modifier
-                ) {
-                    RadioButton(selected = false, onClick = {})
-
-                    Text(
-                        text = stringResource(id = R.string.yearly)
-                    )
-                }
-
-                Row(
-                    modifier = modifier
-                ) {
-                    RadioButton(selected = true, onClick = {})
-
-                    Text(
-                        text = stringResource(id = R.string.monthly)
-                    )
-                }
-            }
+        Column(
+            modifier = modifier.padding(it),
+            verticalArrangement = Arrangement.SpaceAround
+        ) {
             TransactionSummaryCard(
                 modifier = modifier
                     .padding(bottom = it.calculateBottomPadding()),
@@ -106,6 +81,40 @@ internal fun TransactionItemScreen(
                 expensesAmount = 30.0,
                 incomeAmount = 60.0
             )
+
+            TransactionCategoryList(
+                modifier = modifier,
+                transactionCategoryList = items
+            )
+
+            Row(
+                modifier = modifier
+                    .padding(horizontal = 8.dp)
+            ) {
+                TextButton(
+                    modifier = modifier
+                        .padding(end = 4.dp)
+                        .fillMaxWidth(0.5f),
+                    onClick = {}
+                ) {
+                    Text(
+                        text = "View All",
+                        style = MaterialTheme.typography.bodyMedium
+                    )
+                }
+
+                TextButton(
+                    modifier = modifier
+                        .padding(start = 4.dp)
+                        .fillMaxWidth(),
+                    onClick = {}
+                ) {
+                    Text(
+                        text = "Add New",
+                        style = MaterialTheme.typography.bodyMedium
+                    )
+                }
+            }
         }
     }
 }
@@ -118,9 +127,18 @@ internal fun TransactionItemScreen(
 @Composable
 private fun PreviewTransactionItemScreen() {
     val fakeData = listOf(
-        TransactionItem(category = TransactionCategory.GROCERIES, amount = 32.0),
-        TransactionItem(category = TransactionCategory.RENT, amount = 330.0),
-        TransactionItem(category = TransactionCategory.GROCERIES, amount = 12.2)
+        TransactionItem(
+            category = TransactionCategory.GROCERIES,
+            amount = 32.0
+        ),
+        TransactionItem(
+            category = TransactionCategory.RENT,
+            amount = 330.0
+        ),
+        TransactionItem(
+            category = TransactionCategory.GROCERIES,
+            amount = 12.2
+        )
     )
 
     MyApplicationTheme {

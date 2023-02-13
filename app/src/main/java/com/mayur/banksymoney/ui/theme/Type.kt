@@ -36,11 +36,16 @@ val Typography = Typography(
         fontSize = 24.sp,
         letterSpacing = 0.5.sp
     ),
-
     bodyMedium = TextStyle(
         fontFamily = montserratFontFamily,
         fontWeight = FontWeight.Normal,
         fontSize = 20.sp,
+        letterSpacing = 0.5.sp
+    ),
+    bodySmall = TextStyle(
+        fontFamily = montserratFontFamily,
+        fontWeight = FontWeight.Normal,
+        fontSize = 16.sp,
         letterSpacing = 0.5.sp
     ),
     titleLarge = TextStyle(
@@ -49,14 +54,4 @@ val Typography = Typography(
         fontSize = 32.sp,
         letterSpacing = 0.5.sp
     )
-    /* Other default text styles to override
-    ,
-    labelSmall = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Medium,
-        fontSize = 11.sp,
-        lineHeight = 16.sp,
-        letterSpacing = 0.5.sp
-    )
-    */
 )

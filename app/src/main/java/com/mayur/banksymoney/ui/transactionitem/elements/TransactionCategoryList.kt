@@ -1,12 +1,14 @@
 package com.mayur.banksymoney.ui.transactionitem.elements
 
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -19,21 +21,33 @@ fun TransactionCategoryList(
     modifier: Modifier = Modifier,
     transactionCategoryList: List<TransactionItem>
 ) {
-    LazyColumn(
-        modifier = modifier,
-        contentPadding = PaddingValues(
-            vertical = 8.dp
-        ),
-        verticalArrangement = Arrangement.spacedBy(4.dp)
+    Column(
+        modifier = modifier
+            .padding(horizontal = 8.dp),
+        verticalArrangement = Arrangement.Top
     ) {
-        items(
-            transactionCategoryList,
-            contentType = { it.category }
-        ) { transactionCategory ->
-            TransactionItemView(
-                modifier = modifier,
-                transaction = transactionCategory
-            )
+        Text(
+            modifier = modifier.align(Alignment.Start),
+            text = "Expenses By Category:",
+            style = MaterialTheme.typography.bodySmall
+        )
+
+        LazyColumn(
+            modifier = modifier,
+            contentPadding = PaddingValues(
+                vertical = 8.dp
+            ),
+            verticalArrangement = Arrangement.spacedBy(4.dp)
+        ) {
+            items(
+                transactionCategoryList,
+                contentType = { it.category }
+            ) { transactionCategory ->
+                TransactionItemView(
+                    modifier = modifier,
+                    transaction = transactionCategory
+                )
+            }
         }
     }
 }
