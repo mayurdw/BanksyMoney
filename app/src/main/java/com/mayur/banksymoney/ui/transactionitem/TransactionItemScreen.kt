@@ -83,7 +83,8 @@ internal fun TransactionItemScreen(
             )
 
             TransactionCategoryList(
-                modifier = modifier,
+                modifier = modifier
+                    .weight(1f, true),
                 transactionCategoryList = items
             )
 
