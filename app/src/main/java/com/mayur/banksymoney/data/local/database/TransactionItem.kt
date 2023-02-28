@@ -22,11 +22,15 @@ import androidx.room.Insert
 import androidx.room.PrimaryKey
 import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
+import java.util.Date
 
 @Entity
 data class TransactionItem(
     val category: TransactionCategory = TransactionCategory.UNKNOWN,
     val amount: Double,
+    val date: String = "1/1/2017",
+    val memo: String = "Test",
+    val bankSuppliedUniqueId: Int = 0
 ) {
     @PrimaryKey(autoGenerate = true)
     var uid: Int = 0

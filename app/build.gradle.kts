@@ -102,6 +102,7 @@ dependencies {
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
+    implementation("org.apache.commons:commons-csv:1.8")
     ksp(libs.androidx.room.compiler)
 
     // Compose
