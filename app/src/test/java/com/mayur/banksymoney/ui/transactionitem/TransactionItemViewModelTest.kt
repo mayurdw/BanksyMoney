@@ -25,6 +25,7 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import com.mayur.banksymoney.data.TransactionItemRepository
+import com.mayur.banksymoney.data.local.database.TransactionItem
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -48,12 +49,13 @@ class TransactionItemViewModelTest {
 
 private class FakeTransactionItemRepository : TransactionItemRepository {
 
-    private val data = mutableListOf<String>()
+    private val data = mutableListOf<TransactionItem>()
 
-    override val transactionItems: Flow<List<String>>
+    override val transactionItems: Flow<List<TransactionItem>>
         get() = flow { emit(data.toList()) }
 
-    override suspend fun add(name: String) {
-        data.add(0, name)
+    override suspend fun add(amount: Double) {
+        TODO("Not yet implemented")
     }
+
 }

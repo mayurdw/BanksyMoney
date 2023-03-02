@@ -36,7 +36,7 @@ class DefaultTransactionItemRepositoryTest {
     fun transactionItems_newItemSaved_itemIsReturned() = runTest {
         val repository = DefaultTransactionItemRepository(FakeTransactionItemDao())
 
-        repository.add("Repository")
+        repository.add(5.5)
 
         assertEquals(repository.transactionItems.first().size, 1)
     }
