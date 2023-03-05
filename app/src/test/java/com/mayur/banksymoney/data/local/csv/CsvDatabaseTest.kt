@@ -45,4 +45,24 @@ class CsvDatabaseTest {
         assertNotNull(csvTransactionItems)
         assertEquals(2, csvTransactionItems.size)
     }
+
+    @Test
+    fun confirmCsvTransactionItem() {
+        temporaryFile.writeText(
+            "Date,Unique Id,Tran Type,Cheque Number,Payee,Memo,Amount\n\n" +
+                    "2017/01/01,2017010101,DEBIT,,\"DEBIT\",\"CARD 7515 COUNTDOWN AU CKLAND AUCKLAND\",-4.88\n"
+        )
+
+        csvDatabase = CsvDatabase(temporaryFile)
+        val csvTransactionItems = csvDatabase.getTransactionItems()
+
+        assertNotNull(csvTransactionItems)
+        assertEquals(1, csvTransactionItems.size)
+
+        val item = csvTransactionItems[0]
+
+        assertEquals("CARD 7515 COUNTDOWN AU CKLAND AUCKLAND", item.memo)
+        assertEquals(-4.88, item.amount)
+        assertEquals(2017010101, item.uniqueId)
+    }
 }
