@@ -34,7 +34,12 @@ class CsvDatabaseTest {
     @Test
     fun extractCsvItems() {
         temporaryFile.writeText(
-            "Date,Unique Id,Tran Type,Cheque Number,Payee,Memo,Amount\n\n" +
+            "Created date / time : 1 March 2023 / 05:41:03\n" +
+                    "Bank 12; Branch 3089; Account 0361809-00 (Streamline)\n" +
+                    "From date 20170101\n" +
+                    "To date 20170201\n" +
+                    "Ledger Balance : 1247.98 as of 20230301\n" +
+                    "Date,Unique Id,Tran Type,Cheque Number,Payee,Memo,Amount\n\n" +
                     "2017/01/01,2017010101,DEBIT,,\"DEBIT\",\"CARD 7515 COUNTDOWN AU CKLAND AUCKLAND\",-4.88\n" +
                     "2017/01/04,2017010401,D/C,,\"D/C FROM JAYWANT,SIDDH\",\"\",105.00\n"
         )
@@ -49,7 +54,12 @@ class CsvDatabaseTest {
     @Test
     fun confirmCsvTransactionItem() {
         temporaryFile.writeText(
-            "Date,Unique Id,Tran Type,Cheque Number,Payee,Memo,Amount\n\n" +
+            "Created date / time : 1 March 2023 / 05:41:03\n" +
+                    "Bank 12; Branch 3089; Account 0361809-00 (Streamline)\n" +
+                    "From date 20170101\n" +
+                    "To date 20170201\n" +
+                    "Ledger Balance : 1247.98 as of 20230301\n" +
+                    "Date,Unique Id,Tran Type,Cheque Number,Payee,Memo,Amount\n\n" +
                     "2017/01/01,2017010101,DEBIT,,\"DEBIT\",\"CARD 7515 COUNTDOWN AU CKLAND AUCKLAND\",-4.88\n"
         )
 

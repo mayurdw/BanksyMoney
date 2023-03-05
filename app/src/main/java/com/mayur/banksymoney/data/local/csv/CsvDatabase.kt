@@ -8,8 +8,28 @@ import java.util.*
 
 class CsvDatabase(fileName: File) {
     private val bufferedReader = fileName.bufferedReader()
+    private val transactionItems = mutableListOf<CsvTransactionItem>()
 
-    fun getTransactionItems(): List<CsvTransactionItem> {
+    init {
+        removeBeginningLines()
+
+        transactionItems.addAll(extractTransactionItems())
+
+        bufferedReader.close()
+    }
+
+    fun getTransactionItems(): List<CsvTransactionItem> = transactionItems
+
+
+    private fun removeBeginningLines() {
+        var i = 0
+        while (i in 0..4){
+            bufferedReader.readLine()
+            i++
+        }
+    }
+
+    private fun extractTransactionItems(): List<CsvTransactionItem> {
         val listCsvTransactionItem =
             mutableListOf<CsvTransactionItem>()
         val csvParser = CSVParser(
